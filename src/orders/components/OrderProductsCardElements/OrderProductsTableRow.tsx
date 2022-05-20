@@ -72,6 +72,20 @@ const TableLine: React.FC<TableLineProps> = ({
 
   const quantityToDisplay = isOrderLine ? quantityToFulfill : quantity;
 
+      const getLineType = line => {
+        if (line?.unitDiscountReason) {
+            if (line.unitDiscountReason.indexOf("Sale") !== -1) {
+                return " (Sale)";
+            }
+             if (line.unitDiscountReason.indexOf("Voucher") !== -1) {
+                return ` (Voucher: ${line.unitDiscountReason.split("code: ")[1]})`;
+            }
+            return ` (${line.unitDiscountReason})`;
+        } else {
+            return ''
+        }
+    }
+
   return (
     <TableRow key={line.id}>
       <TableCellAvatar
@@ -81,7 +95,7 @@ const TableLine: React.FC<TableLineProps> = ({
         {maybe(() => line.orderLine.productName) || <Skeleton />}
       </TableCellAvatar>
       <TableCell className={classes.colSku}>
-        {line?.orderLine ? line.orderLine.productSku : <Skeleton />}
+        {line?.orderLine ? `${line.orderLine.productSku}${getLineType(line)}` : <Skeleton/>}
       </TableCell>
       <TableCell className={classes.colQuantity}>
         {quantityToDisplay || <Skeleton />}
