@@ -101,8 +101,8 @@ const TableLine: React.FC<TableLineProps> = ({
         {quantityToDisplay || <Skeleton />}
       </TableCell>
       <TableCell className={classes.colPrice} align="right">
-        {maybe(() => line.orderLine.unitPrice.gross) ? (
-          <Money money={line.orderLine.unitPrice.gross} />
+        {maybe(() => line.orderLine.undiscountedUnitPrice.net) ? (
+          <Money money={line.orderLine.undiscountedUnitPrice.net} />
         ) : (
           <Skeleton />
         )}
@@ -110,8 +110,8 @@ const TableLine: React.FC<TableLineProps> = ({
       <TableCell className={classes.colTotal} align="right">
         <Money
           money={{
-            amount: line.quantity * line.orderLine.unitPrice.gross.amount,
-            currency: line.orderLine.unitPrice.gross.currency
+            amount: line.quantity * line.orderLine.undiscountedUnitPrice.net.amount,
+            currency: line.orderLine.undiscountedUnitPrice.net.currency
           }}
         />
       </TableCell>
