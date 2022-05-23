@@ -16,9 +16,6 @@ import React from "react";
 import {FormattedMessage, useIntl} from "react-intl";
 
 import sumBy from "lodash/sumBy";
-import join from "lodash/join";
-import map from "lodash/map";
-
 
 import {maybe, transformPaymentStatus} from "../../../misc";
 import {orderPaymentMessages, paymentButtonMessages} from "./messages";
