@@ -73,14 +73,14 @@ const TableLine: React.FC<TableLineProps> = ({
   const quantityToDisplay = isOrderLine ? quantityToFulfill : quantity;
 
       const getLineType = line => {
-        if (line?.unitDiscountReason) {
-            if (line.unitDiscountReason.indexOf("Sale") !== -1) {
+        if (line?.orderLine?.unitDiscountReason) {
+            if (line.orderLine.unitDiscountReason.indexOf("Sale") !== -1) {
                 return " (Sale)";
             }
-             if (line.unitDiscountReason.indexOf("Voucher") !== -1) {
-                return ` (Voucher: ${line.unitDiscountReason.split("code: ")[1]})`;
+             if (line.orderLine.unitDiscountReason.indexOf("Voucher") !== -1) {
+                return ` (Voucher: ${line.orderLine.unitDiscountReason.split("code: ")[1]})`;
             }
-            return ` (${line.unitDiscountReason})`;
+            return ` (${line.orderLine.unitDiscountReason})`;
         } else {
             return ''
         }
