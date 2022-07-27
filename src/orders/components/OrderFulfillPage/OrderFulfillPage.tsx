@@ -65,7 +65,7 @@ export interface OrderFulfillPageProps {
 }
 
 const initialFormData: OrderFulfillFormData = {
-  sendInfo: true,
+  sendInfo: false,
   trackingNumber: "",
   allowStockToBeExceeded: false
 };
